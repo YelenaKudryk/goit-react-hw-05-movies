@@ -1,5 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate, Outlet, Link } from 'react-router-dom';
+import {
+  useParams,
+  useNavigate,
+  Outlet,
+  Link,
+  useLocation,
+} from 'react-router-dom';
 import { getMovieById } from 'services/api';
 import {
   SectionStyles,
@@ -16,6 +22,9 @@ import Loader from 'components/Loader/Loader';
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location);
+  console.log(location.state);
 
   const [movie, setMovie] = useState({});
   const [loading, setLoading] = useState(false);
@@ -38,16 +47,17 @@ const MovieDetailsPage = () => {
 
   // movie.genres.map(genre => genre.name).join(', ');
 
-  const goBack = () => {
-    navigate(-1);
-  };
+  // const goBack = () => {
+  //   navigate(-1);
+  // };
 
-  console.log(movie.genres);
+  // console.log(movie.genres);
 
   return (
     <>
       {loading && <Loader />}
-     {<Link to='' state={} >Go back<Link/>}
+
+      {/* { <Link to='' state={}>Go back</Link> } */}
 
       {/* <button onClick={goBack} type="button">
         Go back

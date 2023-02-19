@@ -1,9 +1,9 @@
-const BackLink = () => {
-  return (
-    <button onClick={goBack} type="button">
-      Go back
-    </button>
-  );
-};
+// const BackLink = () => {
+//   return (
+//     <button onClick={goBack} type="button">
+//       Go back
+//     </button>
+//   );
+// };
 
-export default BackLink;
+// export default BackLink;
