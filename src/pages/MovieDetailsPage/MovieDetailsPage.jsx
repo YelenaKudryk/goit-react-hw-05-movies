@@ -1,11 +1,5 @@
 import { useState, useEffect } from 'react';
-import {
-  useParams,
-  useNavigate,
-  Outlet,
-  Link,
-  useLocation,
-} from 'react-router-dom';
+import { useParams, useNavigate, Outlet, useLocation } from 'react-router-dom';
 import { getMovieById } from 'services/api';
 import {
   SectionStyles,
@@ -15,6 +9,7 @@ import {
   AdditionalTitle,
   AdditionalList,
   StyledNavLink,
+  GoBackBtn,
 } from './MovieDetailsPage.styled';
 import Error from 'components/Error/Error';
 import Loader from 'components/Loader/Loader';
@@ -23,10 +18,9 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
-  console.log(location.state);
+  const from = location.state?.from || '/movies';
 
-  const [movie, setMovie] = useState({});
+  const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -45,23 +39,17 @@ const MovieDetailsPage = () => {
     fetchMovieById();
   }, [movieId]);
 
-  // movie.genres.map(genre => genre.name).join(', ');
-
-  // const goBack = () => {
-  //   navigate(-1);
-  // };
-
-  // console.log(movie.genres);
+  const goBack = () => {
+    navigate(from);
+  };
 
   return (
     <>
       {loading && <Loader />}
 
-      {/* { <Link to='' state={}>Go back</Link> } */}
-
-      {/* <button onClick={goBack} type="button">
+      <GoBackBtn onClick={goBack} type="button">
         Go back
-      </button> */}
+      </GoBackBtn>
 
       {movie && (
         <>
@@ -78,19 +66,22 @@ const MovieDetailsPage = () => {
               <h5>Overview: </h5>
               <p>{movie.overview}</p>
               <h5>Genres: </h5>
-              <p>TEXT</p>
+              <p>{movie.genres.map(genre => genre.name).join(', ')}</p>
             </Info>
           </SectionStyles>
           <SectionAdditional>
             <AdditionalTitle>Additional information</AdditionalTitle>
             <AdditionalList>
               <li>
-                <StyledNavLink to={`/movies/${movieId}/cast`}>
+                <StyledNavLink state={{ from }} to={`/movies/${movieId}/cast`}>
                   Cast
                 </StyledNavLink>
               </li>
               <li>
-                <StyledNavLink to={`/movies/${movieId}/reviews`}>
+                <StyledNavLink
+                  state={{ from }}
+                  to={`/movies/${movieId}/reviews`}
+                >
                   Reviews
                 </StyledNavLink>
               </li>

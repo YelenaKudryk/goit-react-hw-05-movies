@@ -1,6 +1,12 @@
 import { Outlet } from 'react-router-dom';
-import { Container } from './SharedLayout.styled';
-import { HeaderStyles, HeaderList, HeaderLink } from './SharedLayout.styled';
+import { Suspense } from 'react';
+import Loader from 'components/Loader/Loader';
+import {
+  Container,
+  HeaderStyles,
+  HeaderList,
+  HeaderLink,
+} from './SharedLayout.styled';
 
 const SharedLayout = () => {
   return (
@@ -15,7 +21,9 @@ const SharedLayout = () => {
           </li>
         </HeaderList>
       </HeaderStyles>
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </Container>
   );
 };

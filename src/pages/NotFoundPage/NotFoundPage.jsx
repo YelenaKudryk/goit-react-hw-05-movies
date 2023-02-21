@@ -4,7 +4,6 @@ const NotFoundPage = () => {
   return (
     <>
       <NotFoundText>Page not found</NotFoundText>
-      {/* <a href="/">Return to main</a> */}
     </>
   );
 };

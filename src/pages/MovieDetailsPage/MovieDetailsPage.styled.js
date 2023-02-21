@@ -49,3 +49,20 @@ export const StyledNavLink = styled(NavLink)`
     text-decoration-color: #303f9f;
   }
 `;
+
+export const GoBackBtn = styled.button`
+  margin-top: ${p => p.theme.spacing(3)};
+  margin-bottom: ${p => p.theme.spacing(3)};
+  padding: ${p => p.theme.spacing(2)} ${p => p.theme.spacing(4)};
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: ${p => p.theme.colors.primaryText};
+  font-size: ${p => p.theme.fontSizes.m};
+
+  :hover {
+    color: ${p => p.theme.colors.hoverColor};
+    text-decoration: underline;
+    text-decoration-color: #303f9f;
+  }
+`;
