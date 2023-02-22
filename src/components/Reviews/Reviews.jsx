@@ -31,7 +31,6 @@ const Reviews = () => {
     <>
       {error && <Error />}
       {loading && <Loader />}
-      {reviews.length === 0 && !loading && <p>There is nothing here yet</p>}
 
       {reviews?.length > 0 && (
         <ReviewsList>
@@ -42,6 +41,10 @@ const Reviews = () => {
             </li>
           ))}
         </ReviewsList>
+      )}
+
+      {reviews.length === 0 && !error && !loading && (
+        <p>There are no reviews yet</p>
       )}
     </>
   );

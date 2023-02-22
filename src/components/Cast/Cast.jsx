@@ -31,7 +31,7 @@ const Cast = () => {
     <div>
       {error && <Error />}
       {loading && <Loader />}
-      {cast.length === 0 && !loading && <p>There is nothing here yet</p>}
+
       {cast?.length > 0 && (
         <ActorsList>
           {cast.map(({ id, name, profile_path }) => (
@@ -45,6 +45,10 @@ const Cast = () => {
             </ActorItem>
           ))}
         </ActorsList>
+      )}
+
+      {cast.length === 0 && !error && !loading && (
+        <p>There are no credits yet</p>
       )}
     </div>
   );
